@@ -1,4 +1,4 @@
- #Requires -RunAsAdministrator
+#Requires -RunAsAdministrator
 function Run-NodeVersion() {
     try {
         if (nvm -version) {
@@ -24,10 +24,10 @@ function Run-NodeVersion() {
             Invoke-WebRequest -Uri https://github.com/coreybutler/nvm-windows/releases/download/1.1.8/nvm-noinstall.zip -OutFile $zipFile
             Expand-Archive -path $zipFile -DestinationPath $folder
             Remove-Item $zipFile
-            $path = [System.Environment]::GetEnvironmentVariable("Path","Machine")
-            [System.Environment]::SetEnvironmentVariable("NVM_HOME",$folder,"Machine")
-            [System.Environment]::SetEnvironmentVariable("NVM_SYMLINK","C:\Program Files\nodejs","Machine")
-            $newPath = $path + ";C:\nvm;%NVM_HOME%;%NVM_SYMLINK%"
+            $path = [System.Environment]::GetEnvironmentVariable("Path", "Machine")
+            [System.Environment]::SetEnvironmentVariable("NVM_HOME", $folder, "Machine")
+            [System.Environment]::SetEnvironmentVariable("NVM_SYMLINK", $nodePath, "Machine")
+            $newPath = $path + "$folder;$nodePath"
             [System.Environment]::SetEnvironmentVariable("Path", $newpath, 'Machine')
             New-Item -Path $folder -Name "settings.txt"
             Add-Content -Path $settingsFile  -Value "root: C:\nvm"
