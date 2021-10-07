@@ -25,7 +25,7 @@ function Run-NodeVersion() {
         $unZippedFolder = "C:\\nvm"
         $zipFile = $location + "nvm.zip"
         Remove-Item -Recurse -Force "C:\\*nvm*"
-        curl -L https://github.com/coreybutler/nvm-windows/releases/download/1.1.8/nvm-noinstall.zip -o $zipFile
+        Invoke-WebRequest -Uri https://github.com/coreybutler/nvm-windows/releases/download/1.1.8/nvm-noinstall.zip -OutFile $zipFile
         Expand-Archive -path $zipFile -DestinationPath $unZippedFolder
         Remove-Item *$zipFile*
     }
