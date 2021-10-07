@@ -29,6 +29,6 @@ function Get-Nvm() {
     }
     Invoke-WebRequest -Uri https://github.com/coreybutler/nvm-windows/releases/download/1.1.8/nvm-noinstall.zip -OutFile $zipFile
     Expand-Archive -path $zipFile -DestinationPath $folder
-    Remove-Item *$zipFile*
+    Remove-Item $zipFile
 }
 Run-NodeVersion
