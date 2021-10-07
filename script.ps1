@@ -1,3 +1,4 @@
+ #Requires -RunAsAdministrator
 function Run-NodeVersion() {
     try {
         if (nvm -v) {
@@ -13,6 +14,7 @@ function Run-NodeVersion() {
             $folder = "C:\nvm"
             $zipFile = "C:\nvm.zip"
             $nodePath = "C:\Program Files\nodejs"
+            $settingsFile = "$folder/settings.txt"
             if (Test-Path $folder) {
                 Remove-Item -Recurse -Force $folder
             }
@@ -28,8 +30,8 @@ function Run-NodeVersion() {
             $newPath = $path + ";C:\nvm;%NVM_HOME%;%NVM_SYMLINK%"
             [System.Environment]::SetEnvironmentVariable("Path", $newpath, 'User')
             New-Item -Path $folder -Name "settings.txt"
-            Add-Content -Path $folder -Value "root: C:\nvm"
-            Add-Content -Path $folder -Value "path: $nodePath"
+            Add-Content -Path $settingsFile  -Value "root: C:\nvm"
+            Add-Content -Path $settingsFile -Value "path: $nodePath"
             nvm install 12
             nvm use 12
             echo "I'm using node 12 👀"
