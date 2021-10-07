@@ -27,8 +27,11 @@ function Run-NodeVersion() {
             $path = [System.Environment]::GetEnvironmentVariable("Path", "User")
             [System.Environment]::SetEnvironmentVariable("NVM_HOME", $folder, "User")
             [System.Environment]::SetEnvironmentVariable("NVM_SYMLINK", $nodePath, "User")
-            $newPath = $path + "$folder;$nodePath"
+            $newPath = $path + ";$folder;$nodePath"
             [System.Environment]::SetEnvironmentVariable("Path", $newpath, 'User')
+            $env:Path = $newPath
+            $env:NVM_HOME=$folder
+            $env:NVM_SYMLINK=$nodePath
             New-Item -Path $folder -Name "settings.txt"
             Add-Content -Path $settingsFile  -Value "root: C:\nvm"
             Add-Content -Path $settingsFile -Value "path: $nodePath"
