@@ -1,10 +1,4 @@
 function Run-NodeVersion() {
-    try {
-        if ($(noded -v).Contains("12")) {
-            echo "I'm using node 12 🤩"
-            # Run Script
-        }
-        else {
             try {
                 if (nvm -v) {
                     nvm install 12
@@ -25,11 +19,8 @@ function Run-NodeVersion() {
                 }
             }
         }
-    }
-    catch {
-        Write-Host $_.Exception.Message -ForegroundColor Red
-    }
-} 
+    
+ 
     function Download-Nvm() {
         $unZippedFolder = "C:\nvm"
         $zipFile = $location + "nvm.zip"
