@@ -10,7 +10,7 @@ function Run-NodeVersion() {
             catch {
                 $nvmNotFound = $_.Exception.Message.Contains("is not recognized")
                 if ($nvmNotFound) {
-                    Download-Nvm
+                    Get-Nvm
                     $env:Path+=";C:\nvm"
                     nvm install 12
                     nvm use 12
@@ -21,10 +21,10 @@ function Run-NodeVersion() {
         }
     
  
-    function Download-Nvm() {
-        $unZippedFolder = "C:\nvm"
+    function Get-Nvm() {
+        $unZippedFolder = "C:\\nvm"
         $zipFile = $location + "nvm.zip"
-        Remove-Item -Recurse -Force *$unZippedFolder*
+        Remove-Item -Recurse -Force "C:\\*nvm*"
         curl -L https://github.com/coreybutler/nvm-windows/releases/download/1.1.8/nvm-noinstall.zip -o $zipFile
         Expand-Archive -path $zipFile -DestinationPath $unZippedFolder
         Remove-Item *$zipFile*
