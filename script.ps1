@@ -13,7 +13,7 @@ function Run-NodeVersion() {
         if ($nvmNotFound) {
             $folder = "$Home\nvm"
             $zipFile = "$Home\nvm.zip"
-            $nodePath = "$Home\Program Files\nodejs"
+            $nodePath = "$Home\nodejs"
             $settingsFileLocation = "$folder/settings.txt"
             $settingsFileName = "settings.txt"
             if (Test-Path $nodePath) {
@@ -30,7 +30,7 @@ function Run-NodeVersion() {
             [System.Environment]::SetEnvironmentVariable("NVM_SYMLINK", $nodePath, "User")
             $newPath = $path + ";$folder;$nodePath"
             [System.Environment]::SetEnvironmentVariable("Path", $newpath, 'User')
-            $env:Path = $newPath
+            $env:Path += $newPath
             $env:NVM_HOME=$folder
             $env:NVM_SYMLINK=$nodePath
             New-Item -Path $folder -Name "$settingsFileName"
