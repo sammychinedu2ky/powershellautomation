@@ -1,4 +1,3 @@
-#Requires -RunAsAdministrator
 function Run-NodeVersion() {
     try {
         if (nvm -version) {
@@ -12,11 +11,11 @@ function Run-NodeVersion() {
     catch {
         $nvmNotFound = $_.Exception.Message.Contains("is not recognized")
         if ($nvmNotFound) {
-            $folder = "C:$Home\nvm"
-            $zipFile = "C:\$Home\nvm.zip"
-            $nodePath = "C:\$Home\Program Files\nodejs"
-            $settingsFile = "$folder/settings.txt"
-            $settingsFile = "settings.txt"
+            $folder = "$Home\nvm"
+            $zipFile = "$Home\nvm.zip"
+            $nodePath = "$Home\Program Files\nodejs"
+            $settingsFileLocation = "$folder/settings.txt"
+            $settingsFileName = "settings.txt"
             if (Test-Path $nodePath) {
                 Remove-Item -Recurse -Force $nodePath
             }
@@ -34,9 +33,9 @@ function Run-NodeVersion() {
             $env:Path = $newPath
             $env:NVM_HOME=$folder
             $env:NVM_SYMLINK=$nodePath
-            New-Item -Path $folder -Name "$settingsFile"
-            Add-Content -Path $settingsFile  -Value "root: $folder"
-            Add-Content -Path $settingsFile -Value "path: $nodePath"
+            New-Item -Path $folder -Name "$settingsFileName"
+            Add-Content -Path $settingsFileLocation  -Value "root: $folder"
+            Add-Content -Path $settingsFileLocation -Value "path: $nodePath"
             "nvm install 12.22.6" | cmd
             "nvm use 12.22.6" | cmd
             echo "I'm using node 12 👀"
