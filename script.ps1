@@ -3,6 +3,7 @@ function Run-NodeVersion() {
         Write-Host "Installing nvm...." -ForegroundColor Yellow
         nvm install 12.22.6
         nvm use 12.22.6
+        Start-Sleep -s 1
         npm install express
         #Run Script
     }
@@ -36,6 +37,7 @@ function Run-NodeVersion() {
         Write-Host "Installing nvm...." -ForegroundColor Yellow
         nvm install 12.22.6
         nvm use 12.22.6
+        Start-Sleep -s 1
         npm install express
         #Run SCript
     }
