@@ -7,7 +7,6 @@ function Run-NodeVersion() {
         npm install express
         #Run Script
     }
-    
     else {
         $folder = "$Home\nvm"
         $zipFile = "$Home\nvm.zip"
