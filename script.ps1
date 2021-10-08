@@ -1,4 +1,4 @@
-function Run-NodeVersion() {
+function Install-Dependencies() {
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
         Write-Host "Installing nvm...." -ForegroundColor Yellow
         nvm install 12.22.6
@@ -43,4 +43,4 @@ function Run-NodeVersion() {
 }
    
 
-Run-NodeVersion
+Install-Dependencies
