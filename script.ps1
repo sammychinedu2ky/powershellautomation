@@ -1,8 +1,8 @@
 function Run-NodeVersion() {
     try {
         if (nvm -version) {
-            "nvm install 12.22.6" | cmd
-            "nvm use 12.22.6" | cmd
+            nvm install 12.22.6
+            nvm use 12.22.6
             echo "I'm using node 12 😎"
             npm install express
             #Run Script
@@ -36,8 +36,8 @@ function Run-NodeVersion() {
             New-Item -Path $folder -Name "$settingsFileName"
             Add-Content -Path $settingsFileLocation  -Value "root: $folder"
             Add-Content -Path $settingsFileLocation -Value "path: $nodePath"
-            "nvm install 12.22.6" | cmd
-            "nvm use 12.22.6" | cmd
+            nvm install 12.22.6
+            nvm use 12.22.6
             echo "I'm using node 12 👀"
             npm install express
             #Run SCript
