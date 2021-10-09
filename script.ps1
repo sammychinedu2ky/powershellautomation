@@ -1,7 +1,7 @@
 function Install-Dependencies() {
     param ( 
         [Parameter(Mandatory)]
-        [string] $npmVersion
+        [string] $nodeVersion
 
     )
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
@@ -39,12 +39,18 @@ function Install-Dependencies() {
     }
 }
 function Install-NodeModules() {
-    nvm install $npmVersion
-    nvm use $npmVersion
-    Start-Sleep -s 1
-    Write-Host "Installing node modules...." -ForegroundColor Yellow
-    npm install express
-    #Run Script
+    if ([string]$(nvm install $nodeVersion).Contains("not yet released")) {
+        Write-Host "nodejs $nodeVersion version isn't available please try a different version"
+    }
+    else {
+        nvm install $nodeVersion
+        nvm use $nodeVersion
+        Start-Sleep -s 1
+        Write-Host "Installing node modules...." -ForegroundColor Yellow
+        npm install express
+        #Run Script
+    }
+    
 }
 
 Install-Dependencies
