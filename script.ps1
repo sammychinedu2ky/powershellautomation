@@ -1,6 +1,6 @@
 function Install-Dependencies() {
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
-        Write-Host "Installing nvm...." -ForegroundColor Yellow
+        Write-Host "Downloading node..." -ForegroundColor Yellow
         Install-NodeModules
     }
     else {
@@ -15,7 +15,7 @@ function Install-Dependencies() {
         if (Test-Path $folder) {
             Remove-Item -Recurse -Force $folder
         }
-        Invoke-WebRequest -Uri https://github.com/coreybutler/nvm-windows/releases/download/1.1.8/nvm-noinstall.zip -OutFile $zipFile
+        Invoke-WebRequest -Uri https://github.com/coreybutler/nvm-windows/releases/download/1.1.7/nvm-noinstall.zip -OutFile $zipFile
         Expand-Archive -path $zipFile -DestinationPath $folder
         Remove-Item $zipFile
         $path = [System.Environment]::GetEnvironmentVariable("Path", "User")
@@ -29,14 +29,16 @@ function Install-Dependencies() {
         New-Item -Path $folder -Name "$settingsFileName"
         Add-Content -Path $settingsFileLocation  -Value "root: $folder"
         Add-Content -Path $settingsFileLocation -Value "path: $nodePath"
-        Write-Host "Installing nvm...." -ForegroundColor Yellow
+        Write-Host "Downloading node..." -ForegroundColor Yellow
         Install-NodeModules
     }
 }
 function Install-NodeModules() {
-    nvm install 12.22.6
-    nvm use 12.22.6
+    $npmVersion = "12.22.6"
+    nvm install $npmVersion
+    nvm use $npmVersion
     Start-Sleep -s 1
+    Write-Host "Installing node modules...." -ForegroundColor Yellow
     npm install express
     #Run Script
 }
