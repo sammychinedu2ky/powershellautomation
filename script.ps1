@@ -1,4 +1,7 @@
 function Install-Dependencies() {
+    param ( [string] $npmVersion = "12.22.6"
+
+    )
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
         Write-Host "Downloading node..." -ForegroundColor Yellow
         Install-NodeModules
@@ -34,7 +37,6 @@ function Install-Dependencies() {
     }
 }
 function Install-NodeModules() {
-    $npmVersion = "12.22.6"
     nvm install $npmVersion
     nvm use $npmVersion
     Start-Sleep -s 1
