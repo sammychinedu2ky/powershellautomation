@@ -1,9 +1,5 @@
 function Install-Dependencies() {
-    param ( 
-        [Parameter(Mandatory)]
-        [string] $nodeVersion
-
-    )
+    param ( [Parameter(Mandatory)][string] $nodeVersion)
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
         Write-Host "Downloading node..." -ForegroundColor Yellow
         Install-NodeModules
