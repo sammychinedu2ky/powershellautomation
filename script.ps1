@@ -1,5 +1,7 @@
 function Install-Dependencies() {
-    param ( [string] $npmVersion = "12.22.6"
+    param ( 
+        [Parameter(Mandatory)]
+        [string] $npmVersion
 
     )
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
