@@ -1,11 +1,7 @@
 function Install-Dependencies() {
     if (Get-Command nvm -ErrorAction SilentlyContinue) {
         Write-Host "Installing nvm...." -ForegroundColor Yellow
-        nvm install 12.22.6
-        nvm use 12.22.6
-        Start-Sleep -s 1
-        npm install express
-        #Run Script
+        Install-NodeModules
     }
     else {
         $folder = "$Home\nvm"
@@ -34,13 +30,15 @@ function Install-Dependencies() {
         Add-Content -Path $settingsFileLocation  -Value "root: $folder"
         Add-Content -Path $settingsFileLocation -Value "path: $nodePath"
         Write-Host "Installing nvm...." -ForegroundColor Yellow
-        nvm install 12.22.6
-        nvm use 12.22.6
-        Start-Sleep -s 1
-        npm install express
-        #Run SCript
+        Install-NodeModules
     }
 }
-   
+function Install-NodeModules() {
+    nvm install 12.22.6
+    nvm use 12.22.6
+    Start-Sleep -s 1
+    npm install express
+    #Run Script
+}
 
 Install-Dependencies
